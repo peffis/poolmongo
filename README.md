@@ -1,5 +1,5 @@
 # poolmongo
-A thin wrapper that fuses mongodb-erlang with poolboy (mostly for my own sake)
+A thin wrapper that fuses [mongodb-erlang](https://github.com/comtihon/mongodb-erlang) with [poolboy](https://github.com/devinus/poolboy) (mostly for my own sake)
 
 ## usage
 * Add poolmongo as dependency to your [erlang.mk](https://erlang.mk/) project 
