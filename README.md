@@ -2,13 +2,13 @@
 A thin wrapper that fuses [mongodb-erlang](https://github.com/comtihon/mongodb-erlang) with [poolboy](https://github.com/devinus/poolboy) (mostly for my own sake)
 
 ## usage
-* Add poolmongo as dependency to your [erlang.mk](https://erlang.mk/) project 
+* Add poolmongo as a dependency to your [erlang.mk](https://erlang.mk/) project 
 ```
 DEPS = ... poolmongo ...
 dep_poolmongo = git https://github.com/peffis/poolmongo master
 ```
 
-* Add pool configuration to your sys.config
+* Add a pool configuration to your sys.config (any config really, but keep the name "pmongo" as the name for the pool)
 ```
 [
 ...
@@ -38,8 +38,9 @@ dep_poolmongo = git https://github.com/peffis/poolmongo master
   {vsn, "0.9"},
   {registered, []},
   {applications, [
-                  ...,
-		              poolmongo
+                  ...
+		  poolmongo,
+		  ...
                  ]},
   {mod, { your_app, []}},
   {included_applications, []},
@@ -53,4 +54,4 @@ dep_poolmongo = git https://github.com/peffis/poolmongo master
  make
  ```
  
- * Use the API in pmongo which is the same API as [mongodb-erlang's mc_worker_api](https://github.com/comtihon/mongodb-erlang) except that the first argument, the Connection, is removed
+ * Use the API in the pmongo module which is the same API as [mongodb-erlang's mc_worker_api](https://github.com/comtihon/mongodb-erlang) except that the first argument, the Connection, is removed (as the connection is handled by poolboy)
