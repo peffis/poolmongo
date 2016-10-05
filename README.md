@@ -2,7 +2,7 @@
 A thin wrapper that fuses mongodb-erlang with poolboy (mostly for my own sake)
 
 ## usage
-* Add poolmongo as dependency to your project 
+* Add poolmongo as dependency to your [erlang.mk](https://erlang.mk/) project 
 ```
 DEPS = ... poolmongo ...
 dep_poolmongo = git https://github.com/peffis/poolmongo master
