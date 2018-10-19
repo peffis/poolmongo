@@ -10,8 +10,7 @@ start_link() ->
 init([]) ->
     {ok, Pools} = case os:getenv("POOLS") of
                       false -> application:get_env(poolmongo, pools);
-                      Var -> application:get_env(poolmongo, list_to_atom(Var),
-                                                 application:get_env(poolmongo, pools))
+                      Var -> application:get_env(poolmongo, list_to_atom(Var))
                   end,
 
     PoolSpecs = lists:map(
