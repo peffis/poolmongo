@@ -8,8 +8,11 @@ start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 init([]) ->
-    {ok, Pools} = application:get_env(poolmongo, pools),
-    
+    {ok, Pools} = case os:getenv("POOLS") of
+                      false -> application:get_env(poolmongo, pools);
+                      Var -> application:get_env(poolmongo, list_to_atom(Var), pools)
+                  end,
+
     PoolSpecs = lists:map(
                   fun({Name, SizeArgs, WorkerArgs}) ->
                           PoolArgs = [{name, {local, Name}},
@@ -18,4 +21,3 @@ init([]) ->
                   end, Pools),
 
     {ok, {{one_for_one, 10, 10}, PoolSpecs}}.
-
